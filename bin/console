@@ -12,5 +12,3 @@ require "blackbox"
 
 require "irb"
 IRB.start
-
-Blackbox::CLI.start
