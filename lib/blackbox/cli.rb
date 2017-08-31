@@ -16,23 +16,21 @@ module Blackbox
       @b_num = [0, 1, 2, 3].sample
       @b_ope = ['+', '-', '*', '/'].sample
       write_config
+      say('Quiestion: ([input-A] ? ?) + ([input-B] ? ?) = [result]')
     end
 
     desc 'test INTEGER INTEGER', '答えだけ表示。'
     def test(a, b)
       read_config
       formula = "(#{a.to_i} #{@a_ope} #{@a_num}) + (#{b.to_i} #{@b_ope} #{@b_num})"
-      formula_b = "(#{a.to_i} ? ?) + (#{b.to_i} ? ?)"
-      result = eval formula
-      say("#{formula_b} = #{result}")
+      say("(#{a.to_i} ? ?) + (#{b.to_i} ? ?) = #{eval formula}")
     end
 
     desc 'testd INTEGER INTEGER', '式と答えを表示。'
     def testd(a, b)
       read_config
       formula = "(#{a.to_i} #{@a_ope} #{@a_num}) + (#{b.to_i} #{@b_ope} #{@b_num})"
-      result = eval formula
-      say("#{formula} = #{result}")
+      say("#{formula} = #{eval formula}")
     end
 
     desc 'answer', '回答（答えを左から順に並べた文字列）。答えの表示。'
