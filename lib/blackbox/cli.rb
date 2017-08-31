@@ -2,6 +2,9 @@ require 'blackbox'
 require 'thor'
 require 'yaml'
 
+# number: Uppercase
+# symbol: Lowercase
+
 module Blackbox
   # CLI tool for Blackbox game
   class CLI < Thor
@@ -16,14 +19,14 @@ module Blackbox
       @b_num = [0, 1, 2, 3].sample
       @b_ope = ['+', '-', '*', '/'].sample
       write_config
-      say('Quiestion: ([input-A] ? ?) + ([input-B] ? ?) = [result]')
+      say('Quiestion: ([INPUT-X] ? ?) + ([INPUT-Y] ? ?) = [RESULT]')
     end
 
     desc 'test INTEGER INTEGER', '答えだけ表示。'
     def test(a, b)
       read_config
       formula = "(#{a.to_i} #{@a_ope} #{@a_num}) + (#{b.to_i} #{@b_ope} #{@b_num})"
-      say("(#{a.to_i} ? ?) + (#{b.to_i} ? ?) = #{eval formula}")
+      say("(#{a.to_i} a A) + (#{b.to_i} b B) = #{eval formula}")
     end
 
     desc 'testd INTEGER INTEGER', '式と答えを表示。'
@@ -41,9 +44,9 @@ module Blackbox
         say('Good job!!')
       else
         say('Oh, no...')
-        say("YOUR ANSWER: ([A] #{ans[0]} #{ans[1]}) + ([B] #{ans[2]} #{ans[3]})")
+        say("YOUR ANSWER: ([X] #{ans[0]} #{ans[1]}) + ([Y] #{ans[2]} #{ans[3]})")
       end
-      say("ANSWER:      ([A] #{@a_ope} #{@a_num}) + ([B] #{@b_ope} #{@b_num})")
+      say("ANSWER:      ([X] #{@a_ope} #{@a_num}) + ([Y] #{@b_ope} #{@b_num})")
     end
 
     private
