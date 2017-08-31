@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'blackbox'
 require 'thor'
 require 'yaml'
